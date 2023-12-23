@@ -2,6 +2,7 @@ using MassTransit;
 using Microsoft.Extensions.Options;
 using Order.API.Apis;
 using Order.API.Extensions;
+using Order.API.GraphQL;
 using Order.API.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,11 @@ builder.Services.AddHttpClient("GrpcHttpClient")
             ServerCertificateCustomValidationCallback = (m, crt, chn, e) => true
         };
     });
+
+builder.Services
+    .AddRouting()
+    .AddGraphQLServer()
+    .AddQueryType<Query>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

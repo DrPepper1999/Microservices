@@ -23,7 +23,7 @@ public static class OrderApi
         return app;
     }
 
-    private static async Task<Results<Ok<Guid>, ProblemHttpResult>> CreateOrder(CreateOrderRequest request, IOrderService orderService, IInventoryGrpcClient inventoryGrpcClient, IPublishEndpoint publishEndpoint)
+    private static async Task<Results<Ok<Guid>, ProblemHttpResult>> CreateOrder(CreateOrderRequest request, IOrderRepository orderRepository, IInventoryGrpcClient inventoryGrpcClient, IPublishEndpoint publishEndpoint)
     {
         var products = (await inventoryGrpcClient
             .GetProductsAsync(new GetProductsRequest { Ids = request.productIds }))
@@ -50,7 +50,7 @@ public static class OrderApi
                 .ToList()
         };
 
-        await orderService.CreateAsync(order);
+        await orderRepository.CreateAsync(order);
 
         await publishEndpoint.Publish(new OrderCreatedEvent(new OrderHistoryDto()
         {
@@ -69,15 +69,15 @@ public static class OrderApi
         return TypedResults.Ok(order.Id);
     }
 
-    private static async Task<Ok<List<OrderItem>>> GetAllOrders(IOrderService orderService) => 
-        TypedResults.Ok(await orderService.GetAllOrdersAsync());
+    private static async Task<Ok<List<OrderItem>>> GetAllOrders(IOrderRepository orderRepository) => 
+        TypedResults.Ok(await orderRepository.GetAllOrdersAsync());
 
-    private static async Task<Ok<OrderItem>> GetOrder(Guid id, IOrderService orderService) =>
-        TypedResults.Ok(await orderService.GetOrderAsync(id));
+    private static async Task<Ok<OrderItem>> GetOrder(Guid id, IOrderRepository orderRepository) =>
+        TypedResults.Ok(await orderRepository.GetOrderAsync(id));
 
-    private static async Task<Ok> DeleteOrder(Guid id, IOrderService orderService)
+    private static async Task<Ok> DeleteOrder(Guid id, IOrderRepository orderRepository)
     { 
-        await orderService.RemoveAsync(id);
+        await orderRepository.RemoveAsync(id);
 
         return TypedResults.Ok();
     }

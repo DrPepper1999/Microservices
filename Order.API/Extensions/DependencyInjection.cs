@@ -20,8 +20,10 @@ public static class DependencyInjection
         builder.Services.Configure<MessageBrokerSettings>(
             builder.Configuration.GetSection(MessageBrokerSettings.SectionName));
         
-        builder.Services.AddScoped<IOrderService, OrderService>();
+        builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
         builder.Services.AddScoped<IInventoryGrpcClient, InventoryGrpcClient>();
+
+        builder.Services.AddScoped<OrderService>();
     }
 }

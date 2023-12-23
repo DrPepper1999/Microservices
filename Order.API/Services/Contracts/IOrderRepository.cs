@@ -2,7 +2,7 @@ using Order.API.Model;
 
 namespace Order.API.Services;
 
-public interface IOrderService
+public interface IOrderRepository
 {
     Task<List<OrderItem>> GetAllOrdersAsync();
     Task CreateAsync(Model.OrderItem order);

@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.API", "Order.API\Orde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{1B6A2525-F0CA-4410-9747-EA0A6834B4F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Getways", "Getways\Getways.csproj", "{FC19DF82-AAC9-4A25-9716-4636A2405FB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,5 +40,9 @@ Global
 		{1B6A2525-F0CA-4410-9747-EA0A6834B4F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B6A2525-F0CA-4410-9747-EA0A6834B4F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B6A2525-F0CA-4410-9747-EA0A6834B4F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC19DF82-AAC9-4A25-9716-4636A2405FB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC19DF82-AAC9-4A25-9716-4636A2405FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC19DF82-AAC9-4A25-9716-4636A2405FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC19DF82-AAC9-4A25-9716-4636A2405FB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
