@@ -1,0 +1,17 @@
+﻿services:
+  inventory-api:
+    image: inventory.api
+    build:
+      context: .
+      dockerfile: Inventory.API/Dockerfile
+      
+  inventory-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Lfybbk1999
+      POSTGRES_DB: inventoryDB
+    volumes:
+      - ./.containers/database:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
